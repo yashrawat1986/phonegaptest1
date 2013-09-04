@@ -5,12 +5,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1"/> 
 	<title>Phonegap </title> 
   
-    <link href="jquery.mobile-1.3.1.min.css" rel="stylesheet" />
-      
-    <script src="jquery-1.8.2.js"></script>
-    <script src="jquery-ui-1.8.24.js"></script>
-    <script src="jquery.mobile-1.3.1.js"></script>
-    <script src="jquery.mobile-1.3.1.min.js"></script>
+    
+    <link href="js/jquery.mobile-1.3.1.min.css" rel="stylesheet" />
+    <script src="js/cordova.js"></script>
+    <script src="js/jquery-1.8.2.js"></script>
+    <script src="js/jquery-ui-1.8.24.js"></script>
+    <script src="js/jquery.mobile-1.3.1.js"></script>
+    <script src="js/jquery.mobile-1.3.1.min.js"></script>
 </head>
 <body>
     <div id="divUserPassword" style="margin:5px;" > 
@@ -52,42 +53,24 @@
 
         $.mobile.allowCrossDomainPages = true;
     });
-    //var newUserdata = {
-    //    details:  $('#txtUserName').val(),
-    //    Password: $('#txtPassword').val()       
-    //};
+  
 
     function validateUser() {
-       // $("#loading").show();       
-        var data = "";
-        data.details = "Mukesh|27|4|.net"
-        //var data = { details: "Mukesh|27|4|.net" };
-
-
-
-      //  $.ajax({
-            //        type: "POST",
-            //        url: urlAction,
-            //        contentType: "application/json; charset=utf-8",
-            //        data: JSON.stringify(LostUserDetails),
-            //        dataType: "json"
-            //    }).done(function (response) {
-            //        //ShowModelPopup(response, "Message", true);
-            //        if (response == "Invalid") {
-            //            ShowModelPopup("Invalid User Name", "Message", true);
-            //        }
-
+         
+        var Username = $('#txtUserName').val();
+        var Password = $('#txtPassword').val();
+        
+       
         $.ajax({
             type: "POST",
             url: "http://banrawatm-m/RestService/RestServiceImpl.svc/SaveEmployee",
             contentType: "application/json; charset=utf-8",            
-            data: data,
+            data: JSON.stringify({ "UserName": Username, "Password": Password }),
             dataType: "json"
         }).done(function (data) {
            
             alert(data.Name);
                }).error(function (err) {
-               	alert('error')
             alert(err.message);
 
            
